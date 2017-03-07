@@ -33,7 +33,7 @@ var PlayGame =
 	{
         game.physics.startSystem(Phaser.Physics.ARCADE);
         background = game.add.tileSprite(0,0,400,600,'background');
-        rocket = game.add.sprite(171,520,'rocket');
+        rocket = game.add.sprite(171,560,'rocket');
         rocket.anchor.setTo(0.5,0.5);
         
         astroids = game.add.group();
@@ -57,26 +57,29 @@ var PlayGame =
 	},
 	update: function()
 	{
-        if(move && game.input.activePointer.positionDown.y > 500)
-        {
-            console.log();
-            Movement(touch);
-        }
-        else
-        {
-            move = false;
-        }
+        if(move)
+            {
+            if(game.input.activePointer.positionDown.y > 500)
+            {
+                console.log();
+                Movement(touch);
+            }
+            else if(game.input.activePointer.positionDown.y <= 500 && bulletDelay == true)
+            {
+                shootBullet();
+            }
+            }
 		/*background.tilePosition.y += 4;*/
         if(!move && rocket.body.velocity.x != 0)
         {
             if(rocket.body.velocity.x < 0)
-                {
-                rocket.body.velocity.x += 10;
-                }
+            {
+            rocket.body.velocity.x += 10;
+            }
             else if(rocket.body.velocity.x > 0)
-                {
-                    rocket.body.velocity.x -= 10;
-                }
+            {
+                rocket.body.velocity.x -= 10;
+            }
         }
         if(rocket.position.x == 0)
         {
@@ -94,10 +97,10 @@ var PlayGame =
             }
             }
     
-        if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && bulletDelay == true)
+        /*if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR) && bulletDelay == true)
     	{
     		shootBullet();
-        }
+        }*/
 		},
 	RandomAstroid: function(){
 		/*TODO astroid out of bounds = dead*/
