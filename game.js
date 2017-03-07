@@ -34,7 +34,7 @@ var PlayGame =
         game.physics.startSystem(Phaser.Physics.ARCADE);
         background = game.add.tileSprite(0,0,400,600,'background');
         rocket = game.add.sprite(171,560,'rocket');
-        rocket.anchor.setTo(0.5,0.5);
+        rocket.anchor.setTo(0.4,0.5);
         
         astroids = game.add.group();
         game.time.events.loop(Phaser.Timer.SECOND*3, this.RandomAstroid, this);
